@@ -1,4 +1,4 @@
-// Mobile Menu Functionality
+// Mobile Menu Functionality - Mejorado
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const mobileOverlay = document.querySelector('.mobile-menu-overlay');
@@ -14,6 +14,19 @@ function toggleMenu() {
     // Change hamburger icon
     const icon = hamburger.querySelector('i');
     icon.className = isActive ? 'fas fa-bars' : 'fas fa-times';
+    
+    // Add/remove event listener for escape key
+    if (!isActive) {
+        document.addEventListener('keydown', handleEscapeKey);
+    } else {
+        document.removeEventListener('keydown', handleEscapeKey);
+    }
+}
+
+function handleEscapeKey(e) {
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        toggleMenu();
+    }
 }
 
 hamburger.addEventListener('click', toggleMenu);
@@ -21,24 +34,52 @@ mobileOverlay.addEventListener('click', toggleMenu);
 
 // Close menu when clicking on links
 document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
         if (navLinks.classList.contains('active')) {
-            toggleMenu();
+            // Solo prevenir el comportamiento por defecto si es un enlace de ancla
+            if (link.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                toggleMenu();
+                
+                // Navegar después de cerrar el menú
+                setTimeout(() => {
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300);
+            } else {
+                toggleMenu();
+            }
         }
     });
 });
 
-// Handle resize events
+// Handle resize events - Mejorado
+let resizeTimeout;
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-        toggleMenu();
-    }
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    }, 250);
 });
 
-// Header background on scroll
+// Header background on scroll - Mejorado
+let scrollTimeout;
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
     const scrollY = window.scrollY;
+    
+    clearTimeout(scrollTimeout);
     
     if (scrollY > 100) {
         header.style.background = 'rgba(10, 11, 20, 0.98)';
@@ -47,18 +88,23 @@ window.addEventListener('scroll', () => {
         header.style.background = 'rgba(10, 11, 20, 0.95)';
         header.style.boxShadow = 'none';
     }
+    
+    // Throttle the scroll handler
+    scrollTimeout = setTimeout(() => {
+        highlightActiveNav();
+    }, 10);
 });
 
-// Smooth scrolling for anchor links
+// Smooth scrolling for anchor links - Mejorado
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const targetId = this.getAttribute('href');
         
         if (targetId === '#') return;
         
         const target = document.querySelector(targetId);
         if (target) {
+            e.preventDefault();
             const headerHeight = document.querySelector('header').offsetHeight;
             const targetPosition = target.offsetTop - headerHeight - 20;
             
@@ -66,38 +112,107 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetPosition,
                 behavior: 'smooth'
             });
+            
+            // Update URL without jumping
+            if (history.pushState) {
+                history.pushState(null, null, targetId);
+            } else {
+                location.hash = targetId;
+            }
         }
     });
 });
 
-// Active navigation link highlighting
+// Active navigation link highlighting - Mejorado
 function highlightActiveNav() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
     const headerHeight = document.querySelector('header').offsetHeight;
     
     let current = '';
+    const scrollPosition = window.scrollY + headerHeight + 100;
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
         
-        if (scrollY >= (sectionTop - headerHeight - 100)) {
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
             current = section.getAttribute('id');
         }
     });
     
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === current) {
+        const href = link.getAttribute('href');
+        if (href && href.substring(1) === current) {
             link.classList.add('active');
         }
     });
 }
 
-window.addEventListener('scroll', highlightActiveNav);
+// WhatsApp Functionality - Nueva Funcionalidad
+function initWhatsApp() {
+    const whatsappButtons = document.querySelectorAll('.whatsapp-btn, .whatsapp-float-btn');
+    const defaultMessage = encodeURIComponent('¡Hola! Vi que aquí pueden hacer mi idea mediante software. Me gustaría obtener más información sobre sus servicios.');
+    
+    whatsappButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const phoneNumber = this.getAttribute('data-phone') || '573011737645';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
+            
+            // Abrir WhatsApp en nueva pestaña
+            window.open(whatsappUrl, '_blank');
+            
+            // Tracking opcional (puedes remover esto si no necesitas analytics)
+            console.log('WhatsApp button clicked - Phone:', phoneNumber);
+        });
+    });
+}
 
-// Add loading animation to elements when they come into view
+// WhatsApp Message Customization (Opcional - para futuras mejoras)
+function customizeWhatsAppMessage() {
+    // Esta función puede expandirse para permitir a los usuarios personalizar el mensaje
+    // Por ejemplo, basado en la página donde se encuentra el usuario
+    const currentSection = getCurrentSection();
+    let customMessage = '¡Hola! Vi que aquí pueden hacer mi idea mediante software. Me gustaría obtener más información sobre sus servicios.';
+    
+    switch(currentSection) {
+        case 'services':
+            customMessage = '¡Hola! Estoy interesado/a en sus servicios de desarrollo. ¿Podrían proporcionarme más información?';
+            break;
+        case 'portfolio':
+            customMessage = '¡Hola! Me encantaron sus proyectos. Me gustaría discutir una idea similar para mi negocio.';
+            break;
+        case 'orders':
+            customMessage = '¡Hola! Quiero solicitar un presupuesto para desarrollar mi proyecto de software.';
+            break;
+    }
+    
+    return encodeURIComponent(customMessage);
+}
+
+function getCurrentSection() {
+    const sections = document.querySelectorAll('section');
+    const headerHeight = document.querySelector('header').offsetHeight;
+    const scrollPosition = window.scrollY + headerHeight + 100;
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    return currentSection;
+}
+
+// Add loading animation to elements when they come into view - Mejorado
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -108,30 +223,100 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         }
     });
 }, observerOptions);
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.service-card, .portfolio-item, .team-member, .feature');
+// Observe elements for animation - Mejorado
+function initializeAnimations() {
+    const animateElements = document.querySelectorAll(
+        '.service-card, .portfolio-item, .team-member, .feature, .contact-item, .stat, .step'
+    );
     
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-});
-
-// WhatsApp number formatting (replace with actual number)
-function formatWhatsAppNumber(phone) {
-    // Remove any non-digit characters
-    return phone.replace(/\D/g, '');
 }
 
-// Initialize when DOM is loaded
+// Touch device optimizations
+function optimizeForTouch() {
+    // Increase tap targets for mobile
+    if ('ontouchstart' in window) {
+        document.querySelectorAll('.btn, .member-social a, .social-links a, .whatsapp-float-btn').forEach(element => {
+            element.style.minHeight = '44px';
+            element.style.minWidth = '44px';
+        });
+        
+        // Add touch feedback
+        document.querySelectorAll('.service-card, .portfolio-item, .team-member, .feature').forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transition = 'transform 0.1s ease';
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            card.addEventListener('touchend', function() {
+                this.style.transition = 'transform 0.3s ease';
+                this.style.transform = 'scale(1)';
+            });
+        });
+    }
+}
+
+// Performance optimizations for mobile
+function optimizePerformance() {
+    // Lazy load images (si se agregaran en el futuro)
+    if ('loading' in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        images.forEach(img => {
+            img.src = img.dataset.src;
+        });
+    }
+    
+    // Reduce animations on low-end devices
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
+        document.documentElement.style.setProperty('--transition', 'all 0.2s ease');
+    }
+}
+
+// Initialize when DOM is loaded - Mejorado
 document.addEventListener('DOMContentLoaded', () => {
-    // Add any initialization code here
-    console.log('JJNACode website initialized');
+    initializeAnimations();
+    optimizeForTouch();
+    optimizePerformance();
+    highlightActiveNav(); // Set initial active state
+    initWhatsApp(); // Initialize WhatsApp functionality
+    
+    console.log('JJNACode website optimized for mobile with WhatsApp integration');
 });
+
+// Handle page load and visibility changes
+window.addEventListener('load', () => {
+    // Ensure all resources are loaded
+    document.body.classList.add('loaded');
+});
+
+// Handle page visibility for performance
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // Pause non-essential animations
+    } else {
+        // Resume animations
+    }
+});
+
+// WhatsApp Analytics (Opcional)
+function trackWhatsAppClick(source) {
+    // Aquí puedes integrar con Google Analytics o otro sistema de tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'whatsapp_click', {
+            'event_category': 'contact',
+            'event_label': source,
+            'value': 1
+        });
+    }
+    
+    console.log(`WhatsApp click tracked from: ${source}`);
+}
