@@ -150,31 +150,30 @@ function highlightActiveNav() {
     });
 }
 
-// WhatsApp Functionality - Nueva Funcionalidad
+// WhatsApp Functionality - Implementación Completa
 function initWhatsApp() {
     const whatsappButtons = document.querySelectorAll('.whatsapp-btn, .whatsapp-float-btn');
-    const defaultMessage = encodeURIComponent('¡Hola! Vi que aquí pueden hacer mi idea mediante software. Me gustaría obtener más información sobre sus servicios.');
+    const defaultMessage = '¡Hola! Vi que aquí pueden hacer mi idea mediante software. Me gustaría obtener más información sobre sus servicios.';
     
     whatsappButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             
             const phoneNumber = this.getAttribute('data-phone') || '573011737645';
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
+            const encodedMessage = encodeURIComponent(defaultMessage);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
             
             // Abrir WhatsApp en nueva pestaña
             window.open(whatsappUrl, '_blank');
             
-            // Tracking opcional (puedes remover esto si no necesitas analytics)
-            console.log('WhatsApp button clicked - Phone:', phoneNumber);
+            // Tracking para analytics (opcional)
+            trackWhatsAppClick(this.classList.contains('whatsapp-float-btn') ? 'floating_button' : 'section_button');
         });
     });
 }
 
-// WhatsApp Message Customization (Opcional - para futuras mejoras)
-function customizeWhatsAppMessage() {
-    // Esta función puede expandirse para permitir a los usuarios personalizar el mensaje
-    // Por ejemplo, basado en la página donde se encuentra el usuario
+// WhatsApp Message Customization basado en la sección actual
+function getCustomWhatsAppMessage() {
     const currentSection = getCurrentSection();
     let customMessage = '¡Hola! Vi que aquí pueden hacer mi idea mediante software. Me gustaría obtener más información sobre sus servicios.';
     
@@ -188,9 +187,12 @@ function customizeWhatsAppMessage() {
         case 'orders':
             customMessage = '¡Hola! Quiero solicitar un presupuesto para desarrollar mi proyecto de software.';
             break;
+        case 'team':
+            customMessage = '¡Hola! Me gustaría contactar con su equipo para un proyecto de desarrollo.';
+            break;
     }
     
-    return encodeURIComponent(customMessage);
+    return customMessage;
 }
 
 function getCurrentSection() {
@@ -212,6 +214,20 @@ function getCurrentSection() {
     return currentSection;
 }
 
+// WhatsApp Analytics (Opcional)
+function trackWhatsAppClick(source) {
+    // Aquí puedes integrar con Google Analytics o otro sistema de tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'whatsapp_click', {
+            'event_category': 'contact',
+            'event_label': source,
+            'value': 1
+        });
+    }
+    
+    console.log(`WhatsApp click tracked from: ${source}`);
+}
+
 // Add loading animation to elements when they come into view - Mejorado
 const observerOptions = {
     threshold: 0.1,
@@ -231,7 +247,7 @@ const observer = new IntersectionObserver((entries) => {
 // Observe elements for animation - Mejorado
 function initializeAnimations() {
     const animateElements = document.querySelectorAll(
-        '.service-card, .portfolio-item, .team-member, .feature, .contact-item, .stat, .step'
+        '.service-card, .portfolio-item, .team-member, .feature, .contact-item, .stat, .step, .tech-item'
     );
     
     animateElements.forEach(el => {
@@ -251,7 +267,7 @@ function optimizeForTouch() {
         });
         
         // Add touch feedback
-        document.querySelectorAll('.service-card, .portfolio-item, .team-member, .feature').forEach(card => {
+        document.querySelectorAll('.service-card, .portfolio-item, .team-member, .feature, .tech-item').forEach(card => {
             card.addEventListener('touchstart', function() {
                 this.style.transition = 'transform 0.1s ease';
                 this.style.transform = 'scale(0.98)';
@@ -281,15 +297,20 @@ function optimizePerformance() {
     }
 }
 
-// Initialize when DOM is loaded - Mejorado
-document.addEventListener('DOMContentLoaded', () => {
+// Enhanced initialization function
+function initializeEnhancedFeatures() {
     initializeAnimations();
     optimizeForTouch();
     optimizePerformance();
-    highlightActiveNav(); // Set initial active state
-    initWhatsApp(); // Initialize WhatsApp functionality
+    highlightActiveNav();
+    initWhatsApp();
     
-    console.log('JJNACode website optimized for mobile with WhatsApp integration');
+    console.log('JJNACode website with enhanced features initialized');
+}
+
+// Update DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+    initializeEnhancedFeatures();
 });
 
 // Handle page load and visibility changes
@@ -306,17 +327,3 @@ document.addEventListener('visibilitychange', () => {
         // Resume animations
     }
 });
-
-// WhatsApp Analytics (Opcional)
-function trackWhatsAppClick(source) {
-    // Aquí puedes integrar con Google Analytics o otro sistema de tracking
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'whatsapp_click', {
-            'event_category': 'contact',
-            'event_label': source,
-            'value': 1
-        });
-    }
-    
-    console.log(`WhatsApp click tracked from: ${source}`);
-}
