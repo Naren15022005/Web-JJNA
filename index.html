@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JJNACode | Desarrollo de Software Innovador</title>
+    <title>JJNACode | Desarrollo de Software a la Medida</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/css/jjna.css">
@@ -22,6 +22,7 @@
                     <li><a href="#services">Servicios</a></li>
                     <li><a href="#portfolio">Proyectos</a></li>
                     <li><a href="#team">Equipo</a></li>
+                    <li><a href="#orders">Encargos</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
                 <button class="hamburger" aria-label="Abrir menú">
@@ -38,11 +39,11 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>Construimos el futuro digital</h1>
-                <p>Desarrollamos software innovador que impulsa el crecimiento de startups y empresas. Combinamos tecnología de vanguardia con diseño excepcional.</p>
+                <h1>Software a tu Medida</h1>
+                <p>Desarrollamos soluciones digitales personalizadas que se adaptan perfectamente a las necesidades de tu negocio. Tecnología innovadora, diseño excepcional.</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn">Comenzar Proyecto <i class="fas fa-arrow-right"></i></a>
-                    <a href="#portfolio" class="btn btn-secondary">Ver Nuestro Trabajo</a>
+                    <a href="#orders" class="btn">Solicitar Cotización <i class="fas fa-arrow-right"></i></a>
+                    <a href="#portfolio" class="btn btn-secondary">Ver Proyectos</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
@@ -50,8 +51,8 @@
                         <div class="stat-label">Proyectos Entregados</div>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">3</span>
-                        <div class="stat-label">Años de Experiencia</div>
+                        <span class="stat-number">100%</span>
+                        <div class="stat-label">Personalizado</div>
                     </div>
                     <div class="stat">
                         <span class="stat-number">98%</span>
@@ -65,28 +66,50 @@
     <!-- Services Section -->
     <section id="services">
         <div class="container">
-            <h2>Lo Que Hacemos</h2>
+            <h2>Nuestros Servicios</h2>
+            <p class="section-subtitle">Desarrollamos soluciones tecnológicas adaptadas específicamente a tus requerimientos</p>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3>Desarrollo de Productos</h3>
-                    <p>Llevamos tu idea de concepto a producto funcional. Desarrollamos MVPs y aplicaciones escalables desde cero.</p>
+                    <h3>Desarrollo Web</h3>
+                    <p>Aplicaciones web empresariales, plataformas SaaS y sitios web de alto rendimiento desarrollados con tecnologías modernas.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3>Apps Móviles</h3>
-                    <p>Aplicaciones nativas e híbridas para iOS y Android. Experiencias de usuario fluidas y rendimiento optimizado.</p>
+                    <p>Aplicaciones nativas e híbridas para iOS y Android. Diseño UX/UI optimizado y rendimiento excepcional.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-cloud"></i>
                     </div>
-                    <h3>Cloud & DevOps</h3>
-                    <p>Infraestructura cloud escalable y pipelines de CI/CD. Despliegue automático y monitoreo continuo.</p>
+                    <h3>Soluciones Cloud</h3>
+                    <p>Infraestructura escalable en AWS, Azure y Google Cloud. DevOps, CI/CD y arquitecturas microservicios.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Inteligencia Artificial</h3>
+                    <p>Soluciones de ML, chatbots inteligentes, procesamiento de datos y automatización de procesos con IA.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce</h3>
+                    <p>Plataformas de comercio electrónico personalizadas con sistemas de pago y gestión de inventario.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Bases de Datos</h3>
+                    <p>Diseño e implementación de bases de datos optimizadas, migraciones y consultoría especializada.</p>
                 </div>
             </div>
         </div>
@@ -96,32 +119,50 @@
     <section class="portfolio" id="portfolio">
         <div class="container">
             <h2>Proyectos Destacados</h2>
+            <p class="section-subtitle">Algunos ejemplos de soluciones personalizadas que hemos desarrollado</p>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="portfolio-img">
-                        FinTech Platform
+                        <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="portfolio-content">
-                        <h3>Plataforma Financiera</h3>
-                        <p>Sistema bancario digital con banca en línea, transferencias y gestión de inversiones para startup fintech.</p>
+                        <h3>Sistema de Gestión Financiera</h3>
+                        <p>Plataforma integral para gestión contable, reportes automáticos y análisis financiero en tiempo real.</p>
                         <div class="portfolio-tags">
                             <span class="portfolio-tag">React</span>
                             <span class="portfolio-tag">Node.js</span>
                             <span class="portfolio-tag">PostgreSQL</span>
+                            <span class="portfolio-tag">AWS</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-img">
-                        HealthTech App
+                        <i class="fas fa-heartbeat"></i>
                     </div>
                     <div class="portfolio-content">
-                        <h3>App de Telemedicina</h3>
-                        <p>Aplicación móvil para consultas virtuales, historial médico y seguimiento de pacientes en tiempo real.</p>
+                        <h3>Plataforma de Telemedicina</h3>
+                        <p>Aplicación móvil y web para consultas virtuales, historial médico digital y gestión de pacientes.</p>
                         <div class="portfolio-tags">
                             <span class="portfolio-tag">React Native</span>
                             <span class="portfolio-tag">Firebase</span>
                             <span class="portfolio-tag">MongoDB</span>
+                            <span class="portfolio-tag">WebRTC</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>E-commerce B2B</h3>
+                        <p>Marketplace empresarial con gestión de inventario, pedidos automatizados y sistema de facturación.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Vue.js</span>
+                            <span class="portfolio-tag">Laravel</span>
+                            <span class="portfolio-tag">MySQL</span>
+                            <span class="portfolio-tag">Redis</span>
                         </div>
                     </div>
                 </div>
@@ -133,18 +174,19 @@
     <section id="team">
         <div class="container">
             <h2>Nuestro Equipo</h2>
+            <p class="section-subtitle">Expertos en desarrollo de software personalizado</p>
             <div class="team-grid">
                 <div class="team-member">
                     <div class="member-img">
                         <i class="fas fa-user-astronaut"></i>
                     </div>
                     <h3>Anderson Alfacroswer</h3>
-                    <div class="member-role">CTO</div>
-                    <p>Ex-Google engineer con pasión por construir productos que impacten millones de usuarios.</p>
+                    <div class="member-role">CTO & Arquitecto de Software</div>
+                    <p>Especialista en arquitecturas escalables y desarrollo backend. 8+ años creando soluciones empresariales.</p>
                     <div class="member-social">
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
                     </div>
                 </div>
                 <div class="team-member">
@@ -152,12 +194,12 @@
                         <i class="fas fa-user-ninja"></i>
                     </div>
                     <h3>Narencito</h3>
-                    <div class="member-role">CEO y Fundador</div>
-                    <p>Especialista en arquitecturas cloud y scaling. Certificaciones AWS y Kubernetes.</p>
+                    <div class="member-role">CEO & Fundador</div>
+                    <p>Visionario tecnológico con expertise en estrategia digital y gestión de proyectos complejos.</p>
                     <div class="member-social">
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 <div class="team-member">
@@ -165,25 +207,145 @@
                         <i class="fas fa-user-robot"></i>
                     </div>
                     <h3>Julian Pelirojo</h3>
-                    <div class="member-role">Ingeniero de IA</div>
-                    <p>Especialista en inteligencia artificial y machine learning. Desarrolla soluciones innovadoras con GPT.</p>
+                    <div class="member-role">Ingeniero de IA & ML</div>
+                    <p>Especialista en inteligencia artificial, machine learning y soluciones de automatización inteligente.</p>
                     <div class="member-social">
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Kaggle"><i class="fab fa-kaggle"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
+    <!-- Orders Section -->
+    <section class="orders" id="orders">
         <div class="container">
-            <div class="cta-content">
-                <h2>¿Listo para comenzar?</h2>
-                <p>Hablemos sobre tu proyecto y cómo podemos ayudarte a construir algo increíble juntos.</p>
-                <a href="#contact" class="btn">Agendar Llamada <i class="fas fa-calendar"></i></a>
+            <div class="orders-content">
+                <h2>¿Necesitas Software Personalizado?</h2>
+                <p class="section-subtitle">Desarrollamos soluciones a la medida de tus necesidades específicas</p>
+                
+                <div class="orders-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Consultoría Inicial</h4>
+                        <p>Analizamos tu idea y la convertimos en requisitos técnicos detallados</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Desarrollo Personalizado</h4>
+                        <p>Creamos tu solución usando las tecnologías más adecuadas para tu proyecto</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Entrega & Soporte</h4>
+                        <p>Desplegamos tu aplicación y proporcionamos soporte continuo post-lanzamiento</p>
+                    </div>
+                </div>
+                
+                <div class="orders-process">
+                    <h3>Nuestro Proceso</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Análisis</h4>
+                            <p>Reunimos requisitos y definimos el alcance</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Diseño</h4>
+                            <p>Creación de prototipos y arquitectura técnica</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Desarrollo</h4>
+                            <p>Implementación iterativa con revisiones constantes</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Entrega</h4>
+                            <p>Despliegue, capacitación y soporte continuo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="orders-btns">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-clipboard-list"></i>
+                        Solicitar Cotización
+                    </a>
+                    <a href="https://wa.me/1234567890" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Consultar por WhatsApp
+                    </a>
+                </div>
+                
+                <div class="orders-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Entrega en 4-12 semanas</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Garantía de 6 meses</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Iteraciones ilimitadas</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Código fuente incluido</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p class="section-subtitle">Hablemos sobre tu proyecto. Estamos aquí para ayudarte.</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contacto@jjnacode.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Trabajamos remotamente a nivel global</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -194,27 +356,47 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>JJNACode</h3>
-                    <p>Construimos el futuro digital con software innovador y soluciones tecnológicas de vanguardia para startups y empresas.</p>
+                    <p>Especialistas en desarrollo de software personalizado. Creamos soluciones tecnológicas que impulsan el crecimiento de tu negocio.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Servicios</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Desarrollo Web</a></li>
-                        <li><a href="#">Apps Móviles</a></li>
-                        <li><a href="#">Cloud & DevOps</a></li>
-                        <li><a href="#">Inteligencia Artificial</a></li>
+                        <li><a href="#services">Desarrollo Web</a></li>
+                        <li><a href="#services">Apps Móviles</a></li>
+                        <li><a href="#services">Soluciones Cloud</a></li>
+                        <li><a href="#services">Inteligencia Artificial</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#portfolio">Proyectos</a></li>
+                        <li><a href="#team">Equipo</a></li>
+                        <li><a href="#orders">Encargos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos de Servicio</a></li>
+                        <li><a href="#">Aviso Legal</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 JJNACode. Construyendo el futuro, una línea de código a la vez.</p>
+                <p>&copy; 2025 JJNACode. Desarrollando el futuro, un proyecto a la vez.</p>
             </div>
         </div>
     </footer>
