@@ -450,6 +450,28 @@ header {
     }
 }
 
+/* Override: mostrar las cards de servicios en una sola columna (una por fila) */
+.services-grid.single-column,
+.services-grid.force-single {
+    grid-template-columns: 1fr !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    gap: 1rem !important;
+}
+
+/* Aplicar por defecto: una card por fila */
+.services-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.service-card {
+    width: 100%;
+    max-width: none;
+}
+
 /* --- Fin servicios iconos --- */
 
 /* Portfolio Section - Mejorado para móvil */
