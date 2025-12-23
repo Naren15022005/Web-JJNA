@@ -308,6 +308,20 @@ header {
     text-align: center;
 }
 
+/* Hero buttons: desktop layout and spacing */
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: clamp(1rem, 3vw, 1.5rem);
+    flex-wrap: wrap;
+}
+
+.hero-btns .btn {
+    min-width: 160px;
+}
+
 .hero h1 {
     margin-bottom: clamp(1rem, 3vw, 1.5rem);
 }
@@ -1501,12 +1515,14 @@ footer {
     .hero-btns {
         flex-direction: column;
         align-items: stretch;
-        max-width: 300px;
+        gap: 0.75rem;
+        max-width: 420px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 1rem;
     }
 
-    .btn {
+    .hero-btns .btn {
         width: 100%;
         max-width: none;
     }
