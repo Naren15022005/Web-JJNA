@@ -247,7 +247,7 @@ const observer = new IntersectionObserver((entries) => {
 // Observe elements for animation - Mejorado
 function initializeAnimations() {
     const animateElements = document.querySelectorAll(
-        '.service-card, .portfolio-item, .team-member, .feature, .contact-item, .stat, .step, .tech-item'
+        '.service-card, .portfolio-item, .feature, .contact-item, .stat, .step, .tech-item'
     );
     
     animateElements.forEach(el => {
@@ -267,7 +267,7 @@ function optimizeForTouch() {
         });
         
         // Add touch feedback
-        document.querySelectorAll('.service-card, .portfolio-item, .team-member, .feature, .tech-item').forEach(card => {
+        document.querySelectorAll('.service-card, .portfolio-item, .feature, .tech-item').forEach(card => {
             card.addEventListener('touchstart', function() {
                 this.style.transition = 'transform 0.1s ease';
                 this.style.transform = 'scale(0.98)';
