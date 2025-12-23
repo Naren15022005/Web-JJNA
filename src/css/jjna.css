@@ -461,7 +461,7 @@ header {
 
 /* Aplicar por defecto: una card por fila */
 .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     max-width: 720px;
     margin: 0 auto;
     gap: 1rem;
