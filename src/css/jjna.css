@@ -420,6 +420,58 @@ header {
     line-height: 1.6;
 }
 
+/* --- Responsive: tablet y móvil para Servicios --- */
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.6rem;
+        padding: 0 1rem;
+    }
+    .service-card {
+        width: 100%;
+        max-width: 520px;
+        height: auto;
+        padding: 1.4rem 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    .service-card {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        padding: 1rem 0.9rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .service-card h3 {
+        font-size: 1rem;
+    }
+    .service-card p {
+        font-size: 0.95rem;
+        line-height: 1.45;
+        padding: 0 0.6rem;
+    }
+    .service-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.6rem;
+        height: auto;
+        width: auto;
+        filter: drop-shadow(0 0 4px #fff) drop-shadow(0 1px 6px rgba(139,92,246,0.08));
+    }
+}
+/* --- Fin responsive servicios --- */
+
 /* --- Fin servicios iconos --- */
 
 /* Portfolio Section - Mejorado para móvil */
@@ -539,11 +591,7 @@ header {
     padding: 0 0.5rem;
 }
 
-
-
-.team-member:hover {
-    }
-    .team-member {
+.team-member {
         width: 370px;
     height: 370px;
     background: linear-gradient(120deg, rgba(255,255,255,0.04) 0%, rgba(99,102,241,0.04) 100%);
