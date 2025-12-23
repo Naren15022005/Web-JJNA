@@ -578,17 +578,30 @@ header {
     white-space: nowrap;
 }
 
-/* Team Section - Mejorado para móvil */
+/* Team Section - Mobile-first: stack cards on small screens */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 2.5rem;
-    justify-items: center;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    justify-items: stretch;
     align-items: stretch;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 0.5rem;
+}
+
+@media (min-width: 700px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        justify-items: center;
+    }
+}
+
+@media (min-width: 1100px) {
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 
@@ -596,8 +609,10 @@ header {
 .team-member:hover {
     }
     .team-member {
-        width: 370px;
-    height: 370px;
+        width: 100%;
+        max-width: 370px;
+        margin: 0 auto;
+        height: 370px;
     background: linear-gradient(120deg, rgba(255,255,255,0.04) 0%, rgba(99,102,241,0.04) 100%);
     border: 1.5px solid rgba(99,102,241,0.10);
     border-radius: 18px;
