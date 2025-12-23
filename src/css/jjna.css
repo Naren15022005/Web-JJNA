@@ -488,7 +488,7 @@ header {
 
 .portfolio-item {
     background: #23263a;
-    border-radius: 18px;
+    border-radius: 10px;
     border: 1px solid #2d3146;
     box-shadow: 0 4px 24px rgba(31, 38, 135, 0.08);
     padding: 2rem 1.5rem 1.5rem 1.5rem;
@@ -512,7 +512,7 @@ header {
     justify-content: center;
     height: 90px;
     background: #20243a;
-    border-radius: 12px;
+    border-radius: 8px;
     margin-bottom: 1rem;
     color: #6366f1;
     font-size: 2.8rem;
