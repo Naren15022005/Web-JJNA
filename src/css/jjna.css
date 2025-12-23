@@ -1,4 +1,18 @@
 /* Fondo sólido para la sección de proyectos destacados */
+
+:root {
+    --bg: #0b0f17;
+    --bg-secondary: #0f1220;
+    --bg-card: #23263a;
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --accent-gradient: linear-gradient(90deg, #8b5cf6, #6366f1);
+    --border-color: rgba(255,255,255,0.04);
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    --transition: all 0.2s ease;
+    --shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
 /* --- Portfolio Section Professional Enhancements --- */
 .portfolio {
     background: #181b23 !important;
