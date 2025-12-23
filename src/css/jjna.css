@@ -331,10 +331,7 @@ header {
     width: 100%;
     max-width: none;
 }
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: clamp(1rem, 3vw, 2rem);
-    margin-top: clamp(2rem, 5vw, 3rem);
-}
+
 
 .stat {
     text-align: center;
@@ -606,9 +603,7 @@ header {
 
 
 
-.team-member:hover {
-    }
-    .team-member {
+.team-member {
         width: 100%;
         max-width: 370px;
         margin: 0 auto;
