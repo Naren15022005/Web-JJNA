@@ -304,6 +304,7 @@ function initializeEnhancedFeatures() {
     optimizePerformance();
     highlightActiveNav();
     initWhatsApp();
+    initServiceModals();
     
     console.log('JJNACode website with enhanced features initialized');
 }
@@ -327,3 +328,55 @@ document.addEventListener('visibilitychange', () => {
         // Resume animations
     }
 });
+
+/* Service modals: open modal showing .service-details from each card */
+function initServiceModals() {
+    const modal = document.getElementById('service-modal');
+    if (!modal) return;
+    const overlay = modal.querySelector('.service-modal-overlay');
+    const panel = modal.querySelector('.service-modal-panel');
+    const closeBtn = modal.querySelector('.service-modal-close');
+    const content = modal.querySelector('.service-modal-content');
+
+    function openModal(html) {
+        content.innerHTML = html;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', modalKeyHandler);
+    }
+
+    function closeModal() {
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        content.innerHTML = '';
+        document.removeEventListener('keydown', modalKeyHandler);
+    }
+
+    function modalKeyHandler(e) {
+        if (e.key === 'Escape') closeModal();
+    }
+
+    // Attach click handlers to service cards
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // prevent clicks on inner links/buttons
+            if (e.target.closest('a')) return;
+            const details = card.querySelector('.service-details');
+            if (details) {
+                openModal(details.innerHTML);
+            }
+        });
+
+        // keyboard accessibility: Enter to open
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const details = card.querySelector('.service-details');
+                if (details) openModal(details.innerHTML);
+            }
+        });
+    });
+
+    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+}

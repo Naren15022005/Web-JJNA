@@ -494,6 +494,80 @@ header {
 
 /* --- Fin servicios iconos --- */
 
+/* Service modal styles - animated with opacity + transform for smooth open/close */
+.service-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 260ms cubic-bezier(0.2, 0, 0, 1);
+}
+.service-modal[aria-hidden="false"] {
+    opacity: 1;
+    pointer-events: auto;
+}
+.service-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 260ms cubic-bezier(0.2, 0, 0, 1);
+}
+.service-modal[aria-hidden="false"] .service-modal-overlay {
+    opacity: 1;
+}
+.service-modal-panel {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 1.25rem;
+    width: min(620px, 92%);
+    max-width: 620px;
+    max-height: 86vh;
+    overflow: auto;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(2,6,23,0.6);
+    z-index: 1210;
+    transform: translateY(12px) scale(0.985);
+    opacity: 0;
+    transition: transform 300ms cubic-bezier(0.2, 0, 0, 1), opacity 300ms cubic-bezier(0.2, 0, 0, 1);
+    will-change: transform, opacity;
+}
+.service-modal[aria-hidden="false"] .service-modal-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+.service-modal-close {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.service-modal-content h4 {
+    margin-top: 0;
+}
+.service-modal-content ul {
+    margin: 0.5rem 0 0 1rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+    .service-modal-panel {
+        width: calc(100% - 32px);
+        border-radius: 10px;
+        padding: 1rem;
+    }
+}
+
 /* Portfolio Section - Mejorado para móvil */
 .portfolio {
     background: var(--bg-secondary);

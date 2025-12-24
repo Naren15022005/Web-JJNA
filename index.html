@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JJNACode | Desarrollo de Software a la Medida</title>
+    <title> ARIS Systems | Desarrollo de Software</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/css/jjna.css">
@@ -40,7 +40,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Software a tu Medida</h1>
-                <p>Desarrollamos soluciones digitales personalizadas que se adaptan perfectamente a las necesidades de tu negocio. Tecnología innovadora, diseño excepcional.</p>
+                <p>Diseñamos y desarrollamos sistemas web que ayudan a tu negocio a conseguir clientes, automatizar procesos y crecer sin límites.</p>
                 <div class="hero-btns">
                     <a href="#orders" class="btn">Solicitar Cotización <i class="fas fa-arrow-right"></i></a>
                     <a href="#portfolio" class="btn btn-secondary">Ver Proyectos</a>
@@ -63,26 +63,62 @@
         </div>
     </section>
 
+    <!-- Service Modal -->
+    <div id="service-modal" class="service-modal" aria-hidden="true">
+        <div class="service-modal-overlay" data-close></div>
+        <div class="service-modal-panel" role="dialog" aria-modal="true">
+            <button class="service-modal-close" aria-label="Cerrar">&times;</button>
+            <div class="service-modal-content"></div>
+        </div>
+    </div>
+
     <!-- Services Section -->
     <section id="services">
         <div class="container">
             <h2>Nuestros Servicios</h2>
             <p class="section-subtitle">Desarrollamos soluciones tecnológicas adaptadas específicamente a tus requerimientos</p>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" tabindex="0">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Desarrollo Web</h3>
                     <p>Aplicaciones web empresariales, plataformas SaaS y sitios web de alto rendimiento desarrollados con tecnologías modernas.</p>
+                    <div class="service-details" hidden>
+                        <h4>Qué incluye</h4>
+                        <ul>
+                            <li>Reunión inicial para entender tu negocio y objetivos.</li>
+                            <li>Propuesta con alcance, entregables y presupuesto claro.</li>
+                            <li>Maquetas visuales (prototipo clicable) para ver cómo quedará.</li>
+                            <li>Desarrollo del sitio o aplicación, listo para usar.</li>
+                            <li>Integración con pagos, formularios o sistemas que ya uses.</li>
+                            <li>Pruebas, entrega, y capacitación para tu equipo.</li>
+                            <li>Opcional: hosting, dominio y despliegue (lo gestionamos por ti).</li>
+                        </ul>
+                        <p style="margin-top:0.6rem;font-weight:600;">Por qué es útil</p>
+                        <p style="margin:0;color:var(--text-secondary);">Un buen sitio o aplicación te ayuda a captar clientes, mostrar profesionalismo y automatizar tareas para ahorrar tiempo.</p>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" tabindex="0">
                     <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3>Apps Móviles</h3>
-                    <p>Aplicaciones nativas e híbridas para iOS y Android. Diseño UX/UI optimizado y rendimiento excepcional.</p>
+                    <p>Desarrollamos aplicaciones móviles que conectan tu negocio con tus clientes, mejoran la experiencia de uso y generan valor real desde el primer día.</p>
+                    <div class="service-details" hidden>
+                        <h4>Qué incluye</h4>
+                        <ul>
+                            <li>Sesión para definir objetivos y usuarios principales.</li>
+                            <li>Prototipo visual que muestra la experiencia de la app.</li>
+                            <li>Desarrollo para iOS/Android o PWA según lo que convenga.</li>
+                            <li>Notificaciones, login y sincronización con tus sistemas.</li>
+                            <li>Publicación en tiendas (App Store / Google Play) y soporte de lanzamiento.</li>
+                        </ul>
+                        <p style="margin-top:0.6rem;font-weight:600;">Por qué es útil</p>
+                        <p style="margin:0;color:var(--text-secondary);">Una app conecta directamente con tus clientes, mejora retención y facilita ventas o servicios desde el móvil.</p>
+                    </div>
                 </div>
+                <!--
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-cloud"></i>
@@ -90,20 +126,83 @@
                     <h3>Soluciones Cloud</h3>
                     <p>Infraestructura escalable en AWS, Azure y Google Cloud. DevOps, CI/CD y arquitecturas microservicios.</p>
                 </div>
-                <div class="service-card">
+                -->
+                <div class="service-card" tabindex="0">
                     <div class="service-icon">
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3>Inteligencia Artificial</h3>
-                    <p>Soluciones de ML, chatbots inteligentes, procesamiento de datos y automatización de procesos con IA.</p>
+                    <p>Implementamos soluciones de inteligencia artificial que automatizan tareas, optimizan decisiones y hacen que tu negocio trabaje de forma más inteligente.</p>
+                    <div class="service-details" hidden>
+                        <h4>Qué incluye</h4>
+                        <ul>
+                            <li>Workshop para identificar oportunidades concretas en tu negocio.</li>
+                            <li>Prueba de concepto que demuestra el valor con tus datos.</li>
+                            <li>Integración de la solución a tus procesos (sin cambiar tu operación).</li>
+                            <li>Panel de resultados simple para interpretar lo que hace la IA.</li>
+                        </ul>
+                        <p style="margin-top:0.6rem;font-weight:600;">Por qué es útil</p>
+                        <p style="margin:0;color:var(--text-secondary);">La IA puede automatizar tareas repetitivas y generar insights que mejoren ventas o reducen costos, sin que tengas que entender la tecnología.</p>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" tabindex="0">
                     <div class="service-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <h3>E-commerce</h3>
-                    <p>Plataformas de comercio electrónico personalizadas con sistemas de pago y gestión de inventario.</p>
+                    <p>Creamos tiendas online que convierten visitas en ventas, optimizan la experiencia de compra y escalan junto a tu negocio.</p>
+                    <div class="service-details" hidden>
+                        <h4>Qué incluye</h4>
+                        <ul>
+                            <li>Diseño y configuración de tu tienda online.</li>
+                            <li>Gestión de catálogo y variantes de producto.</li>
+                            <li>Integración segura con pasarelas de pago y facturación.</li>
+                            <li>Procesos de compra optimizados y seguimiento de pedidos.</li>
+                            <li>Opciones de envío y sincronización con logística/ERP.</li>
+                        </ul>
+                        <p style="margin-top:0.6rem;font-weight:600;">Por qué es útil</p>
+                        <p style="margin:0;color:var(--text-secondary);">Vender en línea amplía tu alcance, facilita compras y reduce fricción, lo que se traduce en más ventas y mejores conversiones.</p>
+                    </div>
                 </div>
+                <div class="service-card" tabindex="0">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Sistemas a Medida y Software Empresarial</h3>
+                    <p>Desarrollamos sistemas personalizados que automatizan y optimizan procesos internos, integran equipos y permiten un control completo de la operación.</p>
+                    <div class="service-details" hidden>
+                        <h4>Qué incluye</h4>
+                        <ul>
+                            <li>Análisis de tus procesos y áreas críticas.</li>
+                            <li>Propuesta funcional con módulos (ventas, inventario, facturación, etc.).</li>
+                            <li>Desarrollo del sistema a la medida y panel administrativo fácil de usar.</li>
+                            <li>Integración con contabilidad, pagos y otros sistemas que ya uses.</li>
+                            <li>Capacitación y soporte para tu equipo.</li>
+                        </ul>
+                        <p style="margin-top:0.6rem;font-weight:600;">Por qué es útil</p>
+                        <p style="margin:0;color:var(--text-secondary);">Un sistema a medida automatiza trabajo operativo, reduce errores y centraliza la información para tomar mejores decisiones.</p>
+                    </div>
+                </div>
+                <div class="service-card" tabindex="0">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte, Mantenimiento y Evolución</h3>
+                    <p>Servicio continuo para mantener tu software saludable, seguro y alineado con las necesidades cambiantes del negocio. Convertimos incidencias en mejoras y ofrecemos tranquilidad operativa.</p>
+                    <div class="service-details" hidden>
+                        <h4>Qué incluye</h4>
+                        <ul>
+                            <li>Monitoreo y actualizaciones de seguridad regulares.</li>
+                            <li>Corrección de fallos con tiempos de respuesta acordados (SLA).</li>
+                            <li>Copia de seguridad y planes de recuperación.</li>
+                            <li>Pequeñas mejoras y actualizaciones periódicas.</li>
+                        </ul>
+                        <p style="margin-top:0.6rem;font-weight:600;">Por qué es esencial</p>
+                        <p style="margin:0;color:var(--text-secondary);">Mantener y mejorar tu software evita pérdidas, mantiene la confianza de tus clientes y asegura que la inversión siga dando resultados.</p>
+                    </div>
+                </div>
+                
+                <!--
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-database"></i>
@@ -112,6 +211,7 @@
                     <p>Diseño e implementación de bases de datos optimizadas, migraciones y consultoría especializada.</p>
                 </div>
             </div>
+            -->
         </div>
     </section>
 
