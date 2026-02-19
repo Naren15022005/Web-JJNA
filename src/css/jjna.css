@@ -218,7 +218,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(16px, 3vw, 20px) 0;
+    /* reduce header vertical size (mobile-first) */
+    padding: clamp(8px, 2vw, 12px) 0;
 }
 
 .logo {
@@ -242,7 +243,7 @@ header {
 
 /* Site logo image (header) */
 .site-logo {
-    height: clamp(40px, 6.2vw, 64px);
+    height: clamp(32px, 5vw, 48px);
     width: auto;
     display: block;
     object-fit: contain;
@@ -523,19 +524,19 @@ header {
 }
 .service-modal-panel {
     position: relative;
-    background: var(--bg-primary);
+    background: linear-gradient(180deg, rgba(14,16,20,0.98), var(--bg-primary));
     border: 1px solid rgba(255,255,255,0.04);
-    padding: 1.25rem;
-    width: min(620px, 92%);
-    max-width: 620px;
-    max-height: 86vh;
-    overflow: auto;
-    border-radius: 12px;
-    box-shadow: 0 30px 80px rgba(2,6,23,0.6);
+    padding: 1.5rem;
+    width: min(920px, 94%);
+    max-width: 920px;
+    max-height: 88vh;
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 40px 100px rgba(2,6,23,0.7);
     z-index: 1210;
     transform: translateY(12px) scale(0.985);
     opacity: 0;
-    transition: transform 300ms cubic-bezier(0.2, 0, 0, 1), opacity 300ms cubic-bezier(0.2, 0, 0, 1);
+    transition: transform 320ms cubic-bezier(0.2, 0, 0, 1), opacity 320ms cubic-bezier(0.2, 0, 0, 1);
     will-change: transform, opacity;
 }
 .service-modal[aria-hidden="false"] .service-modal-panel {
@@ -544,14 +545,65 @@ header {
 }
 .service-modal-close {
     position: absolute;
-    right: 10px;
-    top: 8px;
-    background: transparent;
+    right: 12px;
+    top: 12px;
+    background: rgba(255,255,255,0.04);
     border: none;
-    color: var(--text-secondary);
-    font-size: 1.6rem;
+    color: var(--text-primary);
+    font-size: 1.2rem;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    display: inline-grid;
+    place-items: center;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.45);
 }
+
+.service-modal-panel .modal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-image {
+    width: 100%;
+    max-height: 340px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.12), transparent);
+}
+.modal-image img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.modal-body {
+    padding: 0.25rem 0 0 0;
+    overflow: auto;
+    max-height: calc(88vh - 380px);
+}
+
+.modal-body h3 { margin: 0 0 0.5rem 0; font-size:1.3rem; }
+.modal-body .modal-tags { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.75rem; }
+.modal-body .modal-tags .portfolio-tag { background: rgba(99,102,241,0.08); color: #8b5cf6; padding:6px 10px; font-weight:600; border-radius:999px; }
+.modal-body .modal-details { color: var(--text-secondary); line-height:1.6; }
+
+/* Desktop: layout image left, content right */
+@media (min-width: 900px) {
+    .service-modal-panel .modal-grid { display: grid; grid-template-columns: 45% 55%; gap: 1.25rem; align-items: start; }
+    .modal-image { max-height: 420px; }
+    .modal-body { max-height: calc(88vh - 40px); }
+}
+
+/* Modal icon styling for service cards when used as image fallback */
+.modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 3rem;
+    color: #8b5cf6;
+}
+.modal-image .service-icon i { font-size: 2.6rem; color: inherit; }
 .service-modal-content h4 {
     margin-top: 0;
 }
@@ -573,27 +625,47 @@ header {
     background: var(--bg-secondary);
 }
 
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    align-items: stretch;
+.portfolio-carousel {
+    position: relative;
 }
 
+.portfolio-track {
+    display: flex;
+    gap: 0; /* remove external gap so only one card is visible at a time */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+}
+
+.portfolio-track::-webkit-scrollbar { display: none; }
+
 .portfolio-item {
-    background: #23263a;
-    border-radius: 10px;
-    border: 1px solid #2d3146;
-    box-shadow: 0 4px 24px rgba(31, 38, 135, 0.08);
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    /* Transparent container (no card background) */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0.8rem 0.6rem; /* internal spacing so cards don't touch edges */
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
-    transition: box-shadow 0.2s, border-color 0.2s;
+    gap: 1rem;
+    transition: transform 260ms cubic-bezier(.2,0,.15,1), box-shadow 260ms ease;
     min-height: 320px;
     position: relative;
     overflow: hidden;
     height: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+    scroll-snap-align: center;
+    flex: 0 0 100%; /* force one card per view */
+    max-width: 100%;
+    margin: 0; /* ensure centered by track/container at wide sizes */
+}
+
+/* For very wide screens keep card centered and limit width visually */
+@media (min-width: 1200px) {
+    /* Ensure each carousel item fills the track to avoid peeking of adjacent cards */
+    .portfolio-item { flex: 0 0 100%; max-width: 100%; margin: 0; }
 }
 
 .portfolio-item::before {
@@ -601,15 +673,11 @@ header {
 }
 
 .portfolio-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-    background: #20243a;
+    display: block;
+    height: 180px;
+    background: transparent;
     border-radius: 8px;
     margin-bottom: 1rem;
-    color: #6366f1;
-    font-size: 2.8rem;
     position: relative;
     overflow: hidden;
 }
@@ -625,6 +693,53 @@ header {
     z-index: 2;
 }
 
+/* Portfolio item image (screenshot) */
+.portfolio-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Vertical image variant for specific cards (responsive) */
+.portfolio-img.vertical-img {
+    /* mobile-first: full width, fixed height to match other cards */
+    width: 100%;
+    height: 180px; /* match .portfolio-img default on small screens */
+    max-height: 420px;
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
+    overflow: hidden;
+}
+
+/* Desktop: place image in left column with similar sizing to other images */
+@media (min-width: 800px) {
+    .portfolio-img.vertical-img {
+        flex: 0 0 48%;
+        height: auto;
+        max-height: 420px;
+    }
+}
+
+/* Small phones: slightly taller for readability */
+@media (max-width: 480px) {
+    .portfolio-img.vertical-img {
+        height: 220px;
+        max-height: 320px;
+    }
+}
+
+/* Image inside vertical container: keep aspect and be responsive */
+.portfolio-img.vertical-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* show whole vertical image without cropping */
+    object-position: center center;
+    display: block;
+}
+
 .portfolio-content {
     padding: 0;
     display: flex;
@@ -637,20 +752,22 @@ header {
 }
 
 .portfolio-content h3 {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.5rem;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
     text-align: left;
+    letter-spacing: -0.2px;
 }
 
 .portfolio-content p {
-    font-size: 1rem;
+    font-size: 0.98rem;
     color: #cbd5e1;
-    margin-bottom: 1.2rem;
-    line-height: 1.55;
+    margin-bottom: 1rem;
+    line-height: 1.6;
     text-align: left;
     flex-grow: 1;
+    max-width: 100%;
 }
 
 .portfolio-tags {
@@ -659,18 +776,92 @@ header {
     flex-wrap: wrap;
     margin-top: auto;
     width: 100%;
+    align-items: center;
 }
 
 .portfolio-tag {
-    background: #292d44;
+    background: rgba(139,92,246,0.12);
     color: #8b5cf6;
     border-radius: 999px;
-    padding: 5px 14px;
+    padding: 6px 12px;
     font-size: 0.85rem;
     font-weight: 600;
-    border: none;
+    border: 1px solid rgba(139,92,246,0.08);
     white-space: nowrap;
 }
+
+.portfolio-item:hover {
+    transform: translateY(-6px);
+}
+
+.portfolio-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 300ms ease;
+}
+
+.portfolio-item:hover .portfolio-img img {
+    transform: scale(1.03);
+}
+
+/* Horizontal layout on wide screens: image left, text right */
+@media (min-width: 800px) {
+    .portfolio-track { align-items: center; }
+    .portfolio-item {
+        flex-direction: row;
+        align-items: stretch;
+        padding: 0.6rem 0.6rem;
+    }
+    .portfolio-img {
+        flex: 0 0 48%;
+        aspect-ratio: 16 / 9; /* force a consistent media proportion */
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 0;
+        overflow: hidden;
+    }
+    .portfolio-img img { width:100%; height:100%; object-fit:cover; object-position:center; min-height: 220px; }
+    .portfolio-content {
+        flex: 1 1 52%;
+        padding-left: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 799px) {
+    /* mobile: stacked as before */
+    .portfolio-item { flex-direction: column; }
+    .portfolio-img { height: 180px; }
+}
+
+/* Carousel controls */
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.04);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30;
+}
+
+.carousel-prev { left: -10px; }
+.carousel-next { right: -10px; }
+
+/* Buttons hidden visually - carousel uses autoplay and gestures */
+.carousel-prev, .carousel-next { display: none !important; }
 
 /* Team Section - Mobile-first: stack cards on small screens */
 .team-grid {
@@ -1792,7 +1983,7 @@ footer {
     }
 
     .portfolio-img {
-        height: 140px;
+        height: 160px;
     }
 
     /* Tech Grid MEJORADO - Mantiene 3 columnas en tablet */
@@ -1938,7 +2129,7 @@ footer {
     }
 
     .portfolio-img {
-        height: 120px;
+        height: 140px;
         font-size: 1.75rem;
     }
 
