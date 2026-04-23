@@ -74,6 +74,7 @@ window.addEventListener('resize', () => {
 });
 
 // Header background on scroll - Mejorado
+// Cambia el estado mediante la clase `.scrolled` en lugar de estilos inline
 let scrollTimeout;
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
@@ -82,11 +83,9 @@ window.addEventListener('scroll', () => {
     clearTimeout(scrollTimeout);
     
     if (scrollY > 100) {
-        header.style.background = 'rgba(10, 11, 20, 0.98)';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+        header.classList.add('scrolled');
     } else {
-        header.style.background = 'rgba(10, 11, 20, 0.95)';
-        header.style.boxShadow = 'none';
+        header.classList.remove('scrolled');
     }
     
     // Throttle the scroll handler
