@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> ARIS Systems | Desarrollo de Software</title>
+    <!-- Apply the saved/preferred theme before paint to avoid a flash -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('aris-theme');
+                if (t !== 'light' && t !== 'dark') {
+                    t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/css/jjna.css">
@@ -17,17 +31,22 @@
                     <img src="src/img/logo.png" alt="ARIS Systems" class="site-logo">
                     <span class="brand-name">ARIS Systems</span>
                 </a>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Inicio</a></li>
-                    <li><a href="#services">Servicios</a></li>
-                    <li><a href="#tech-stack">Tecnologías</a></li>
-                    <li><a href="#portfolio">Proyectos</a></li>
-                    <li><a href="#team">Equipo</a></li>
-                    <li><a href="#orders">Encargos</a></li>
-                </ul>
-                <button class="hamburger" aria-label="Abrir menú">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div class="nav-right">
+                    <ul class="nav-links">
+                        <li><a href="#home" class="active">Inicio</a></li>
+                        <li><a href="#services">Servicios</a></li>
+                        <li><a href="#tech-stack">Tecnologías</a></li>
+                        <li><a href="#portfolio">Proyectos</a></li>
+                        <li><a href="#team">Equipo</a></li>
+                        <li><a href="#orders">Encargos</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="hamburger" aria-label="Abrir menú">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -426,6 +445,7 @@
                         <img src="src/img/agroconecta.png" alt="AgroConecta - Marketplace Agrícola" loading="lazy">
                     </div>
                     <div class="portfolio-content">
+                        <span class="portfolio-eyebrow">Marketplace</span>
                         <h3>AgroConecta — Marketplace Agrícola</h3>
                         <p>AgroConecta es un marketplace digital que conecta directamente a campesinos, compradores y empresas para vender y distribuir productos agrícolas, gestionando pedidos, stock, logística y estados de entrega desde una sola plataforma.</p>
 
@@ -450,6 +470,7 @@
                         <img src="src/img/erpsaas.png" alt="ArisERP — captura" loading="lazy">
                     </div>
                     <div class="portfolio-content">
+                        <span class="portfolio-eyebrow">SaaS · ERP</span>
                         <h3>ArisERP — ERP SaaS modular</h3>
                         <p>ArisERP es un ERP SaaS modular en la nube: módulos independientes (ventas, inventario, contabilidad, RRHH, etc.) que cada empresa activa según sus necesidades.</p>
 
@@ -478,6 +499,7 @@
                                                 <img src="src/img/craftPlane.png" alt="CraftPlane — Planificador voxel" loading="lazy">
                                         </div>
                     <div class="portfolio-content">
+                        <span class="portfolio-eyebrow">Web App · 3D</span>
                         <h3>CraftPlane — Planificador de construcciones voxel</h3>
                         <p>CraftPlane es una plataforma web que permite planificar, visualizar y adaptar construcciones voxel (tipo Minecraft) antes de construirlas en el juego.</p>
 
@@ -508,6 +530,7 @@
                         <img src="src/img/CodeArchitech.png" alt="CodeArchiteck — app educativa" loading="lazy">
                     </div>
                     <div class="portfolio-content">
+                        <span class="portfolio-eyebrow">EdTech · Móvil</span>
                         <h3>CodeArchitech — App educativa gamificada</h3>
                         <p>CodeArchiteck es una app educativa gamificada donde aprendes programación, ingeniería y arquitectura de software como si fuera un juego por mundos. Cada mundo enseña conceptos clave mediante introducciones, prácticas, retos y jefes finales.</p>
 
@@ -543,6 +566,7 @@
                         <img src="src/img/Incubapp.png" alt="IncubApp — Gestión de ciclos de incubación" loading="lazy">
                     </div>
                     <div class="portfolio-content">
+                        <span class="portfolio-eyebrow">App Móvil</span>
                         <h3>IncubApp — Gestión de ciclos de incubación (Flutter)</h3>
                         <p>App multiplataforma en Flutter para planificar y seguir ciclos de incubación: crear/iniciar/finalizar/cancelar ciclos,
                              registrar controles diarios (temperatura, humedad, observaciones) y recibir recomendaciones automáticas.</p>
@@ -574,6 +598,7 @@
                         <img src="src/img/AppCosecha.png" alt="AppCosecha — Gestión de negocios" loading="lazy">
                     </div>
                     <div class="portfolio-content">
+                        <span class="portfolio-eyebrow">Móvil · Fintech</span>
                         <h3>AppCosecha — Gestión de negocios y finanzas (Flutter)</h3>
                         <p>Aplicación Flutter para gestionar negocios, registrar entradas/transacciones, establecer metas, ver resúmenes e indicadores (analytics) y completar el flujo de onboarding/configuración.</p>
 
@@ -597,7 +622,9 @@
                     </div>
                 </div>
 
+                </div>
                 <button class="carousel-next" aria-label="Siguiente">›</button>
+                <div class="carousel-dots" role="tablist" aria-label="Navegación de proyectos"></div>
             </div>
         </div>
     </section>
@@ -791,6 +818,6 @@
         </a>
     </div>
 
-    <script src="src/js/jjna.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "name": "aris-systems-web",
+  "version": "1.0.0",
+  "description": "Sitio web de ARIS Systems — HTML + CSS moderno + JavaScript vanilla (ES modules), empaquetado con Vite y desplegado en Vercel.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

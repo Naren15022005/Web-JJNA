@@ -1,126 +1,98 @@
-📋 Descripción del Proyecto
-Este proyecto consiste en el desarrollo de un sitio web moderno y responsive para JJNACode, una startup de desarrollo de software. La página web está diseñada para mostrar servicios, portfolio, equipo de trabajo y facilitar el contacto con clientes potenciales.
+# ARIS Systems — Sitio Web
 
-🎯 Objetivos Cumplidos
-1. Diseño Moderno y Profesional
-✅ Estética startup con tonos oscuros y acentos vibrantes
+Sitio web corporativo de **ARIS Systems**, estudio de desarrollo de software a
+medida. Una sola página (one-page) con secciones de servicios, tecnologías,
+proyectos, equipo y contacto.
 
-✅ Gradientes modernos y efectos visuales atractivos
+## 🧱 Stack
 
-✅ Tipografía Space Grotesk + Inter para máxima legibilidad
+Construido con tecnología web moderna, **sin frameworks de UI**:
 
-✅ Diseño limpio y minimalista
+- **HTML5** semántico.
+- **CSS moderno** — variables (custom properties), Grid/Flexbox, `clamp()`,
+  `backdrop-filter`, animaciones y media queries responsive.
+- **JavaScript vanilla** organizado en **ES Modules** (sin librerías).
+- **[Vite](https://vitejs.dev/)** como envoltura de desarrollo y bundler
+  (dev server con HMR + build optimizado). No hay framework ni Tailwind.
+- **Vercel** para el despliegue.
+- **Font Awesome** y **Google Fonts** (Space Grotesk + Inter) vía CDN.
 
-2. Responsive Design Avanzado
-✅ Mobile-first approach
+## 🚀 Puesta en marcha
 
-✅ Breakpoints optimizados para todos los dispositivos
+Requisitos: **Node.js 18+** (probado en Node 24).
 
-✅ Menú hamburguesa funcional
+```bash
+# 1. Instalar dependencias
+npm install
 
-✅ Grids y flexbox adaptativos
+# 2. Servidor de desarrollo (http://localhost:5173)
+npm run dev
 
-✅ Touch-friendly para dispositivos móviles
+# 3. Build de producción → carpeta dist/
+npm run build
 
-3. Estructura de Contenido
-✅ Header: Navegación fija con logo y menú
+# 4. Previsualizar el build de producción
+npm run preview
+```
 
-✅ Hero: Sección principal con call-to-action y estadísticas
+> ℹ️ Como el JavaScript usa ES Modules, el sitio debe servirse por HTTP
+> (`npm run dev`). Abrir `index.html` directamente con `file://` no funciona
+> porque el navegador bloquea los módulos por seguridad (CORS).
 
-✅ Servicios: Grid de servicios ofrecidos
+## 📁 Estructura
 
-✅ Portfolio: Muestra de proyectos destacados
+```
+Web-JJNA/
+├── index.html             # Entrada / marcado de la página
+├── vite.config.js         # Configuración de Vite
+├── vercel.json            # Configuración de despliegue en Vercel
+├── package.json
+└── src/
+    ├── css/
+    │   └── jjna.css        # Estilos (sistema de diseño + componentes)
+    ├── img/                # Logo e imágenes de proyectos
+    └── js/
+        ├── main.js         # Punto de entrada: arranca los módulos
+        └── modules/
+            ├── navigation.js   # Menú móvil, scroll suave, nav activa
+            ├── whatsapp.js     # Botones de contacto por WhatsApp
+            ├── animations.js   # Reveal on scroll + optimizaciones táctiles
+            ├── modals.js       # Modales de servicios y proyectos
+            ├── carousel.js     # Carrusel de proyectos (flechas + dots + autoplay)
+            └── focus-trap.js   # Utilidad de accesibilidad para los modales
+```
 
-✅ Equipo: Presentación del equipo con roles
+Cada módulo expone una función `init…()` y `main.js` los inicializa cuando el
+DOM está listo.
 
-✅ CTA: Sección de llamada a la acción
+## 🎨 Sistema de diseño
 
-✅ Footer: Información de contacto y enlaces
+La paleta y los tokens viven como variables CSS en `:root` (ver `src/css/jjna.css`):
 
-🛠 Tecnologías Implementadas
-Frontend
-HTML5: Estructura semántica
-
-CSS3:
-
-Variables CSS para consistencia
-
-Grid y Flexbox para layouts
-
-Animaciones y transiciones
-
-Media queries para responsive
-
-JavaScript: Interactividad del menú móvil
-
-Font Awesome: Iconografía
-
-Google Fonts: Tipografía moderna
-
-Características Técnicas
-🎨 Sistema de Diseño
-css
+```css
 :root {
-    --bg-primary: #0a0b14;
-    --bg-secondary: #111827;
-    --accent-primary: #6366f1;
-    --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
-    /* ... más variables */
+    --bg-primary:   #1A1A1A;  /* Jet Black  */
+    --bg-secondary: #222526;  /* Onyx       */
+    --bg-card:      #353A3E;  /* Graphite   */
+    --accent-primary:  #E0E0E0; /* Platinum */
+    --accent-secondary:#BFBFBF; /* Ash      */
+    /* …más tokens (radios, sombras, transiciones, helpers RGB) */
 }
-📱 Responsive Breakpoints
-> 768px: Desktop
+```
 
-768px - 480px: Tablet
+## ☁️ Despliegue en Vercel
 
-< 480px: Mobile
+El proyecto está listo para Vercel (preset *Vite* autodetectado). La
+configuración explícita está en `vercel.json`:
 
-< 360px: Mobile pequeño
+- **Build command:** `npm run build`
+- **Output directory:** `dist`
 
-♿ Accesibilidad
-Etiquetas ARIA para screen readers
+Cada *push* a la rama principal genera un despliegue automático.
 
-Soporte para high contrast mode
+## ♿ Accesibilidad
 
-Navegación por teclado
-
-Textos alternativos en imágenes
-
-📁 Estructura de Archivos
-text
-project/
-│
-├── index.html
-├── src/
-│   ├── css/
-│   │   └── jjna.css
-│   └── js/
-│       └── jjna.js
-│
-└── README.md
-🚀 Características Destacadas
-1. Performance Optimizada
-Código CSS minificado y eficiente
-
-Imágenes SVG ligeras
-
-Carga diferida de recursos
-
-Transiciones optimizadas
-
-2. UX/UI Excellence
-Navegación intuitiva
-
-Estados hover y focus visibles
-
-Feedback visual en interacciones
-
-Jerarquía visual clara
-
-3. SEO Friendly
-Estructura semántica HTML5
-
-Meta tags optimizados
-
-Títulos descriptivos
-
-URLs amigables
+- Navegación por teclado y focos visibles (`:focus-visible`).
+- Focus trap en los modales y cierre con `Escape`.
+- Etiquetas ARIA y textos alternativos en imágenes.
+- Respeta `prefers-reduced-motion` y `prefers-contrast`.
